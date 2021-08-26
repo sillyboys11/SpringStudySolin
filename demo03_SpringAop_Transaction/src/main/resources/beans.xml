@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--    配置扫描包-->
+    <context:component-scan base-package="com.solin"/>
+    <!--    引入外包资源文件-->
+    <context:property-placeholder location="classpath:dp.properties"/>
+    <!--    创建数据库连接池-->
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="username" value="${jdbc.name}"/>
+    </bean>
+    <!--    创建queryRunner对象-->
+    <bean id="queryRunner" class="org.apache.commons.dbutils.QueryRunner">
+        <constructor-arg name="ds" ref="dataSource"></constructor-arg>
+    </bean>
+    <!--    配置切面-->
+<!--    <aop:config>-->
+<!--        <aop:aspect id="trans" ref="transactionManager">-->
+<!--            &lt;!&ndash;配置切入点&ndash;&gt;-->
+<!--            <aop:pointcut id="point" expression="execution(* com.solin.service.impl.AccountServiceImpl.*(..))"/>-->
+<!--            <aop:around method="aroundTransaction" pointcut-ref="point"/>-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+
+    <!--开启切面扫描-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+</beans>

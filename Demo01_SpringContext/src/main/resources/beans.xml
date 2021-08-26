@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="accountService" class="com.solin.service.impl.AccountServiceImpl"
+    p:p1="哈哈哈" p:p2="滋滋">
+        <!--  构造函数注入属性     constructor-arg  -->
+        <constructor-arg name="desc" value="描述"/>
+        <constructor-arg name="xx" value="xxx"/>
+        <!-- accountServiceImpl 中需要引用 AccountDao 对象-->
+        <property name="accountDao" ref="accountDao"/>
+        <property name="id" value="1"/>
+        <property name="name" value="你好"/>
+        <property name="ss">
+            <list>
+                <value>你好</value>
+                <value>不好</value>
+                <value>挺好</value>
+            </list>
+        </property>
+        <property name="names">
+            <list>
+                <value>小明</value>
+                <value>小红</value>
+                <value>小吕</value>
+            </list>
+        </property>
+        <property name="hobby">
+            <set>
+                <value>篮球</value>
+                <value>看书</value>
+                <value>音乐</value>
+                <value>音乐</value>
+            </set>
+        </property>
+        <property name="book">
+            <map>
+                <entry key="1" value="java"/>
+                <entry key="2" value="Android"/>
+                <entry key="3" value="HTML"/>
+            </map>
+        </property>
+
+    </bean>
+    <bean id="accountDao" class="com.solin.dao.impl.AccountDaoImpl"/>
+    <bean id="myBean" class="com.solin.domain.MyBeanFactory" factory-method="getMyBean"/>
+    <!--
+    实例功能模式创建对象
+    1、先创建工厂对象
+    2、调用工厂方法创建对象
+    -->
+    <bean id="instanceFactory" class="com.solin.domain.InstanceBeanFactory"/>
+    <bean id="myBean2" factory-bean="instanceFactory" factory-method="getMyBean"/>
+
+    <bean id="myBean3" class="com.solin.domain.MyBeanFactoryBean"/>
+</beans>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+">
+    <!-- 需要添加到配置文件的类，需要系统扫描的包
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-beans.xsd -->
+    <!--
+         需要系统扫描的包 多个可以用,隔开
+    -->
+    <context:component-scan base-package="com.sonlin.dao,
+                                          com.sonlin.service,
+                                          com.sonlin.utils"/>
+
+    <!-- 引入外部配置文件   -->
+    <context:property-placeholder location="classpath:db.properties,classpath:email.properties"/>
+
+<!-- service -dao -dao-queryrunner-datasource   -->
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="username" value="${jdbc.name}"/>
+    </bean>
+
+<!--    <bean id="emailUtils" class="com.sonlin.utils.EmailUtils">-->
+<!--        <property name="username" value="${email.name}"/>-->
+<!--        <property name="password" value="${email.password}"/>-->
+<!--    </bean>-->
+
+    <bean id="queryRunner" class="org.apache.commons.dbutils.QueryRunner">
+        <constructor-arg name="ds" ref="dataSource"/>
+    </bean>
+
+<!--    <bean id="accountDao" class="com.sonlin.dao.impl.AccountDaoImpl">-->
+<!--        <property name="queryRunner" ref="queryRunner"/>-->
+<!--    </bean>-->
+<!--    <bean id="accountService" class="com.sonlin.service.impl.AccountServiceImpl">-->
+<!--        <property name="accountDao" ref="accountDao"/>-->
+<!--    </bean>-->
+
+</beans>

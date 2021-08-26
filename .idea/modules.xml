@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Demo01_BeanFactory/Demo01_BeanFactory.iml" filepath="$PROJECT_DIR$/Demo01_BeanFactory/Demo01_BeanFactory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Demo01_SpringContext/Demo01_SpringContext.iml" filepath="$PROJECT_DIR$/Demo01_SpringContext/Demo01_SpringContext.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Demo02_Annotation/Demo02_Annotation.iml" filepath="$PROJECT_DIR$/Demo02_Annotation/Demo02_Annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Demo02_CURD_SpringDay2/Demo02_CURD_SpringDay2.iml" filepath="$PROJECT_DIR$/Demo02_CURD_SpringDay2/Demo02_CURD_SpringDay2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SptringStudy.iml" filepath="$PROJECT_DIR$/SptringStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo03_Aop01/demo03_Aop01.iml" filepath="$PROJECT_DIR$/demo03_Aop01/demo03_Aop01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo03_SpringAop02/demo03_SpringAop02.iml" filepath="$PROJECT_DIR$/demo03_SpringAop02/demo03_SpringAop02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo03_SpringAop_Transaction/demo03_SpringAop_Transaction.iml" filepath="$PROJECT_DIR$/demo03_SpringAop_Transaction/demo03_SpringAop_Transaction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo03_springAop_annotation/demo03_springAop_annotation.iml" filepath="$PROJECT_DIR$/demo03_springAop_annotation/demo03_springAop_annotation.iml" />
+    </modules>
+  </component>
+</project>

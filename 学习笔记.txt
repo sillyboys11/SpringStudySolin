@@ -1,0 +1,106 @@
+如果想要往 spring中注入对象：
+
+注解的方式：
+
+    在类上加注解
+    @component("名字")  作用等同于 配置文件中 bean 名字=id
+    也可以使用更加明确的说明
+    @Controller 指明servlet层的对象
+    @Service    指明Service层的对象
+    @Repository 指明dao 持久层的对象
+    @Controller @Service @Repository 这三个注解底层还是@component 只是起了个别名方便区分
+    三个注解可以给对象起名，如果你懒不想起名可以不写，默认注入到Spring容器中的名字就是类名 首字母小写
+
+    读取配置文件中的对象
+    @Resource(name='名字',type=类型) 可以使用这两种方式读取
+    使用 @Resource(type=类型) 读取时 保证对象只有一个实现类，不然会报错
+    @AutoWrite 代替 @Resource(type=类型)
+    @AutoWrite 更加简单不需要写类型，会自动匹配类型相同的对象，有多个会报错
+
+    注意：@Resource(type=类型) @AutoWrite 都有限制，在容器中只有一个该类型的对象
+         使用注解需要在配置文件中说明：需要扫描的包
+         <context:component-scan base-package="com.sonlin.dao,com.sonlin.service">
+
+
+    ###配置文件中引入外部文件
+    1、配置约束： xmlns:context="http://www.springframework.org/schema/context"
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+    2、引入外部文件  多个外部文件用逗号隔开
+                 <context:property-placeholder location="classpath:db.properties"/>
+                location：用来指明文件的路径  classpath:类路径的意思
+                同理，多个类路径用逗号隔开
+    3、引用外部文件
+                "${db.name}"
+                实例：
+                <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+                        <property name="driverClassName" value="${jdbc.driver}"/>
+                        <property name="jdbcUrl" value="${jdbc.url}"/>
+                        <property name="password" value="${jdbc.password}"/>
+                        <property name="username" value="${jdbc.name}"/>
+                    </bean>
+
+    4、使用注解的方式，读取额外的配置文件
+        @value("配置文件的属性名")
+        示例： @Value("${email.name}")
+               private String username;
+    5、注解   @Qualifier(名字)  表示读取那个对象的 ；适用于容器内存在多个类型相同的实例
+
+
+    6、不使用配置文件全部使用注解
+    @Service(服务层注解)  @Repository(持久层)  @Component()   注解：将对象放置容器内
+    server->dao->QueryRunner->DataSource
+        创建Config.class
+        添加注解@Configuration 表名这是一个配置文件
+        @ComponentScan({"包名","包名"})  表示需要扫描的文件
+        @Import({类名.class,类名.class}) 拆分配置文件类，将拆分的类引入
+
+        Config.class 类中创建对象
+        @Bean 表示创建这个对象放置Spring容器中
+        示例：
+        @Bean
+        public DataSource getDataSource(){}
+
+        引用外部配置文件
+        @PropertiesSource("classpath:db.properties")
+        等同于xml中的标签：
+        <context:property-placeholder location="classpath:db.properties,classpath:email.properties"/>
+        引用外部文件中的属性
+        @Value("${jdbc.name}")
+
+    7、junitTest测试
+        xml配置文件的工程
+        @RunWith(SpringJUnit4ClassRunner.class)
+        @ContextConfiguration(locations = "classpath:beans.xml")
+
+        注解的Spring工程
+        @RunWith(SpringJUnit4ClassRunner.class)
+        @ContextConfiguration(classes = MyConfig.class)
+
+    8、Aop切面相关配置
+       @Aspect  配置通知对象
+
+       通知类型：
+       @Around @After @Before @Throwing
+       配置通知类型和切入点： 返回值  包名  方法名 (参数)
+       @Around("execution(* com.solin.service.impl.*.*(..))")
+
+       config.class 配置文件中开启aop扫描
+       @EnableAspectJAutoProxy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

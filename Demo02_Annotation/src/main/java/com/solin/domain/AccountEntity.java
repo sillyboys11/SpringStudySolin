@@ -1,0 +1,48 @@
+package com.solin.domain;
+
+import org.springframework.stereotype.Component;
+
+/**
+ * @Author solin
+ * @Date 2021/8/19 22:48
+ * @content
+ */
+
+public class AccountEntity {
+    private int id;
+    private String name;
+    private double money;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
+    @Override
+    public String toString() {
+        return "AccountEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", money=" + money +
+                '}';
+    }
+}

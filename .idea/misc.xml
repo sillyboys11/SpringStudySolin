@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/Demo01_BeanFactory/pom.xml" />
+        <option value="$PROJECT_DIR$/Demo01_SpringContext/pom.xml" />
+        <option value="$PROJECT_DIR$/Demo02_CURD_SpringDay2/pom.xml" />
+        <option value="$PROJECT_DIR$/Demo02_Annotation/pom.xml" />
+        <option value="$PROJECT_DIR$/demo03_Aop01/pom.xml" />
+        <option value="$PROJECT_DIR$/demo03_SpringAop02/pom.xml" />
+        <option value="$PROJECT_DIR$/demo03_SpringAop_Transaction/pom.xml" />
+        <option value="$PROJECT_DIR$/demo03_springAop_annotation/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
